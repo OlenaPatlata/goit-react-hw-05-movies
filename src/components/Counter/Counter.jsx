@@ -4,7 +4,6 @@ import Title from 'components/Title/Title';
 import Section from 'components/Section/Section';
 import React, { Component } from 'react';
 // import { render } from 'react-dom';
-// import PropTypes from 'prop-types';
 
 class Counter extends Component {
   static defaultProps = {
@@ -12,9 +11,6 @@ class Counter extends Component {
     initialValueNeutral: 0,
     initialValueBad: 0,
   };
-  // static typeProps = {
-
-  // }
 
   state = {
     good: this.props.initialValueGood,

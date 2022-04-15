@@ -1,7 +1,12 @@
 import { Component } from 'react';
 import s from './Buttons.module.css';
+import PropTypes from 'prop-types';
 
 class Buttons extends Component {
+  static propTypes = {
+    names: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onIncrement: PropTypes.func.isRequired,
+  };
   render() {
     const { names, onIncrement } = this.props;
 

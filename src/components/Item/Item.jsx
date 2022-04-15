@@ -1,8 +1,10 @@
 import s from './Item.module.css';
+import PropTypes from 'prop-types';
 // import { nanoid } from 'nanoid';
 
 const Item = props => {
   const { array } = props;
+
   const newName = [
     [...array[0]].splice(0, 1)[0].toUpperCase(),
     [...array[0]].splice(1).join(''),
@@ -21,7 +23,9 @@ const Item = props => {
     </li>
   );
 };
-
+Item.propTypes = {
+  array: PropTypes.array.isRequired,
+};
 export default Item;
 
 // key={nanoid()}
