@@ -4,7 +4,12 @@ import './App.css';
 
 class App extends Component {
   render() {
-    return <></>;
+    return (
+      <>
+        {' '}
+        <h1>hello!</h1>
+      </>
+    );
   }
 }
 
