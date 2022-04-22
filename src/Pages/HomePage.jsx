@@ -3,7 +3,7 @@ import {
   useHistory,
   useParams,
   useLocation,
-  NavLink,
+  Link,
   Route,
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -18,12 +18,12 @@ const HomePage = () => {
   console.log(url);
   console.log(path);
 
-  const history = useHistory();
-  console.log('~ ~ HomePage ~ history', history);
-  const params = useParams();
-  console.log('~ ~ MovieDetailsPage ~ params', params);
-  const location = useLocation();
-  console.log('~ ~ HomePage ~ location', location);
+  // const history = useHistory();
+  // console.log('~ ~ HomePage ~ history', history);
+  // const params = useParams();
+  // console.log('~ ~ MovieDetailsPage ~ params', params);
+  // const location = useLocation();
+  // console.log('~ ~ HomePage ~ location', location);
 
   useEffect(() => {
     (async () => {
@@ -43,9 +43,10 @@ const HomePage = () => {
         <ul>
           {movies.map(movie => (
             <li key={nanoid()}>
-              <NavLink to="/movies/:movieId">
+              {/* <Link to="/movies/:movieId"> */}
+              <Link to={`${url}movies/${movie.id}`}>
                 {movie.name ? movie.name : movie.title}
-              </NavLink>
+              </Link>
             </li>
           ))}
         </ul>
