@@ -7,6 +7,9 @@ import axios from 'axios';
 // Поиск
 // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
 
+// Пример запроса по постеру
+// https://image.tmdb.org/t/p/w300/dZDelM1eeEMxiBJKW9okzTZPTGn.jpg
+
 // Запрос по ID
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
@@ -33,7 +36,6 @@ const getMovieId = async id => {
   const { data } = await axios.get(
     `/${PARAM.movieID}${id}?api_key=${API_KEY}&language=en-US`
   );
-  console.log(data);
   return data;
 };
 const getMovieIdReviews = async id => {

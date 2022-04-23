@@ -15,15 +15,6 @@ import MovieDetailsPage from 'Pages/MovieDetailsPage';
 const HomePage = () => {
   const [movies, setMovies] = useState(null);
   const { url, path } = useRouteMatch();
-  console.log(url);
-  console.log(path);
-
-  // const history = useHistory();
-  // console.log('~ ~ HomePage ~ history', history);
-  // const params = useParams();
-  // console.log('~ ~ MovieDetailsPage ~ params', params);
-  // const location = useLocation();
-  // console.log('~ ~ HomePage ~ location', location);
 
   useEffect(() => {
     (async () => {
@@ -43,7 +34,6 @@ const HomePage = () => {
         <ul>
           {movies.map(movie => (
             <li key={nanoid()}>
-              {/* <Link to="/movies/:movieId"> */}
               <Link to={`${url}movies/${movie.id}`}>
                 {movie.name ? movie.name : movie.title}
               </Link>

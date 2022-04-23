@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory, NavLink } from 'react-router-dom';
 import * as movieAPI from 'servises/api';
+import OneMovie from 'components/OneMovie/OneMovie';
+import Cast from 'components/Cast/Cast';
 
 const MovieDetailsPage = () => {
-  // console.log(movies);
   const { movieId } = useParams();
-  // console.log('~ ~ MovieDetailsPage ~ movieId', movieId);
+
   // const location = useLocation();
   // console.log('~ ~ HomePage ~ location', location);
 
   const [movie, setMovie] = useState(null);
+
   useEffect(() => {
     (async () => {
       if (movieId) {
         try {
-          const { results } = await movieAPI.getMovieId(movieId);
-          setMovie([...results]);
+          const results = await movieAPI.getMovieId(movieId);
+          setMovie(results);
         } catch (error) {
           console.log(error);
         }
@@ -23,10 +25,18 @@ const MovieDetailsPage = () => {
     })();
   }, [movieId]);
 
+  const history = useHistory();
+  const handleClick = () => {
+    history.push('/');
+  };
   return (
     <>
-      <p>movie {movieId}</p>
-      <img src="" width="100" />
+      {movie && <OneMovie onClick={handleClick} movie={movie} />}
+      {/* {movie && <Cast movie={movie} />} */}
+      {/* <hr />
+      <Route path={`${path}/:movieId`}>
+        {moviesSearch && <MovieDetailsPage movies={moviesSearch} />}
+      </Route> */}
     </>
   );
 };

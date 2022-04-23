@@ -28,6 +28,7 @@ const MoviesPage = () => {
           const { results } = await movieAPI.getSearchMovies(qwery);
           setMoviesSearch([...results]);
         } catch (error) {
+        
           console.log(error);
         }
       }
@@ -41,7 +42,7 @@ const MoviesPage = () => {
         <ul>
           {moviesSearch.map(movie => (
             <li key={nanoid()}>
-              <Link to={`${url}movies/${movie.id}`}>
+              <Link to={`${url}/${movie.id}`}>
                 {movie.name ? movie.name : movie.title}
               </Link>
             </li>

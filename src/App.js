@@ -5,8 +5,8 @@ import AppBar from 'components/AppBar/AppBar';
 import HomePage from 'Pages/HomePage';
 import MoviesPage from 'Pages/MoviesPage';
 import MovieDetailsPage from 'Pages/MovieDetailsPage';
-import Cast from 'Pages/Cast';
-import Reviews from 'Pages/Reviews';
+import CastPage from 'Pages/CastPage';
+import ReviewsPage from 'Pages/ReviewsPage';
 import NotFoundPage from 'Pages/NotFoundPage';
 
 import './App.css';
@@ -26,12 +26,12 @@ export default function App() {
         <Route path="/movies/:movieId">
           <MovieDetailsPage />
         </Route>
-        {/* <Route path="/movies/:movieId/cast">
-          <Cast />
+        <Route path="/movies/:movieId/cast">
+          <CastPage />
         </Route>
         <Route path="/movies/:movieId/reviews">
-          <Reviews />
-        </Route> */}
+          <ReviewsPage />
+        </Route>
         <Route path="/pagenotfound">
           <NotFoundPage />
         </Route>
