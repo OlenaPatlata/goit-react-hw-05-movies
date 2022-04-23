@@ -25,6 +25,27 @@
 .description__list {
   list-style: none;
 }
+.title {
+  display: flex;
+}
+.titleMovie {
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+p {
+  margin-top: 20px;
+}
+span:not(:last-child) {
+  margin-right: 20px;
+}
+
+.overview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 14;
+  overflow: hidden;
+}
 .nav {
   display: flex;
   flex-direction: column;

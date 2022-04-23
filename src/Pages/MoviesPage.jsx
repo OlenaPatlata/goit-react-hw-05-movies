@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+
 import Form from 'components/Form/Form';
 import MovieDetailsPage from 'Pages/MovieDetailsPage';
 import * as movieAPI from 'servises/api';
@@ -28,7 +29,6 @@ const MoviesPage = () => {
           const { results } = await movieAPI.getSearchMovies(qwery);
           setMoviesSearch([...results]);
         } catch (error) {
-        
           console.log(error);
         }
       }

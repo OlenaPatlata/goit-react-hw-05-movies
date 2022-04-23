@@ -1,0 +1,13 @@
+.title {
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 15px;
+}
+.description {
+  font-size: 14px;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 14;
+  overflow: hidden;
+}

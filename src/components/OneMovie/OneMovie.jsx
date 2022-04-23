@@ -45,20 +45,20 @@ const OneMovie = ({ movie, onClick }) => {
         </div>
         <div className={s.description__wrapper}>
           <ul className={s.description__list}>
-            <li>
-              <p>{titleMovie}</p>
+            <li className={s.title}>
+              <p className={s.titleMovie}>{titleMovie}</p>
               <p>{year}</p>
             </li>
             <li>
-              <p>User Score</p>
+              <p className={s.titleMovie}>Vote count</p>
               <p>{vote_count}</p>
             </li>
             <li>
-              <p>Overview</p>
-              <p>{overview}</p>
+              <p className={s.titleMovie}>Overview</p>
+              <p className={s.overview}>{overview}</p>
             </li>
             <li>
-              <p>Genres</p>
+              <p className={s.titleMovie}>Genres</p>
               <p>
                 {genres.map(genre => {
                   return <span key={nanoid()}>{genre?.name}</span>;

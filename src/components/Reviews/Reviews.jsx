@@ -4,12 +4,12 @@ const Reviews = ({ results }) => {
   return (
     <>
       <ul>
-        {results.lenght > 0 ? (
+        {results.length > 0 ? (
           results.map(elem => {
             return (
               <li key={nanoid()}>
-                <p>{elem.author}</p>
-                <p>{elem.content}</p>
+                <p className={s.title}>{elem.author}</p>
+                <p className={s.description}>{elem.content}</p>
               </li>
             );
           })

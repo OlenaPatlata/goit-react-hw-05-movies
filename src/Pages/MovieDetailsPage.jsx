@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation, useHistory, NavLink } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { injectStyle } from 'react-toastify/dist/inject-style';
 import * as movieAPI from 'servises/api';
 import OneMovie from 'components/OneMovie/OneMovie';
-import Cast from 'components/Cast/Cast';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-
-  // const location = useLocation();
-  // console.log('~ ~ HomePage ~ location', location);
+  if (typeof window !== 'undefined') {
+    injectStyle();
+  }
 
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(null);
+
+  const notify = () =>
+    toast.error('The resource you requested could not be found.');
 
   useEffect(() => {
     (async () => {
@@ -18,8 +23,10 @@ const MovieDetailsPage = () => {
         try {
           const results = await movieAPI.getMovieId(movieId);
           setMovie(results);
-        } catch (error) {
-          console.log(error);
+        } catch (errorNew) {
+          setError(errorNew);
+          console.log(errorNew);
+          notify();
         }
       }
     })();
@@ -32,11 +39,19 @@ const MovieDetailsPage = () => {
   return (
     <>
       {movie && <OneMovie onClick={handleClick} movie={movie} />}
-      {/* {movie && <Cast movie={movie} />} */}
-      {/* <hr />
-      <Route path={`${path}/:movieId`}>
-        {moviesSearch && <MovieDetailsPage movies={moviesSearch} />}
-      </Route> */}
+      {error && (
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      )}
     </>
   );
 };
