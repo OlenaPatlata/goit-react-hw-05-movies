@@ -6,12 +6,20 @@ import {
   NavLink,
   Route,
 } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import s from './OneMovie.module.css';
 import { nanoid } from 'nanoid';
-import CastPage from 'Pages/CastPage';
-import ReviewsPage from 'Pages/ReviewsPage';
+// import CastPage from 'Pages/CastPage';
+// import ReviewsPage from 'Pages/ReviewsPage';
 
-const OneMovie = ({ movie, onClick }) => {
+const CastPage = lazy(() =>
+  import('Pages/CastPage' /* webpackChunkName: "CastPage" */)
+);
+const ReviewsPage = lazy(() =>
+  import('Pages/ReviewsPage' /* webpackChunkName: "ReviewsPage" */)
+);
+
+const OneMovie = ({ movie, onClickBack }) => {
   const history = useHistory();
   const params = useParams();
   const location = useLocation();
@@ -36,7 +44,7 @@ const OneMovie = ({ movie, onClick }) => {
 
   return (
     <>
-      <button type="button" onClick={onClick}>
+      <button type="button" onClick={onClickBack}>
         Go back
       </button>
       <div className={s.container}>
@@ -74,7 +82,6 @@ const OneMovie = ({ movie, onClick }) => {
         <NavLink
           exact
           to={{ pathname: `${url}/cast` }}
-          // to="/movies/:movieId/cast"
           className={s.current}
           activeClassName={s.active}
         >
@@ -82,7 +89,6 @@ const OneMovie = ({ movie, onClick }) => {
         </NavLink>
         <NavLink
           to={{ pathname: `${url}/reviews` }}
-          // to="/movies/:movieId/reviews"
           className={s.current}
           activeClassName={s.active}
         >
@@ -90,12 +96,14 @@ const OneMovie = ({ movie, onClick }) => {
         </NavLink>
       </nav>
       <hr />
-      <Route path="/movies/:movieId/cast">
-        <CastPage />
-      </Route>
-      <Route path="/movies/:movieId/reviews">
-        <ReviewsPage />
-      </Route>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Route path="/movies/:movieId/cast">
+          <CastPage />
+        </Route>
+        <Route path="/movies/:movieId/reviews">
+          <ReviewsPage />
+        </Route>
+      </Suspense>
     </>
   );
 };

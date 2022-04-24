@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation, useHistory, NavLink } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
 import * as movieAPI from 'servises/api';
@@ -7,6 +7,9 @@ import OneMovie from 'components/OneMovie/OneMovie';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+  const location = useLocation();
+  console.log('~ ~ MovieDetailsPage ~ location', location);
+
   if (typeof window !== 'undefined') {
     injectStyle();
   }
@@ -33,12 +36,13 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const history = useHistory();
-  const handleClick = () => {
-    history.push('/');
+
+  const handleClickBack = () => {
+    history.push(location?.state?.from ?? '/');
   };
   return (
     <>
-      {movie && <OneMovie onClick={handleClick} movie={movie} />}
+      {movie && <OneMovie onClickBack={handleClickBack} movie={movie} />}
       {error && (
         <ToastContainer
           position="top-right"
