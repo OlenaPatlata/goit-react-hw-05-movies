@@ -1,7 +1,6 @@
 import {
   useRouteMatch,
   useHistory,
-  useParams,
   useLocation,
   Link,
   Route,
@@ -10,6 +9,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { nanoid } from 'nanoid';
 
 import Form from 'components/Form/Form';
+import Loader from 'components/Loader/Loader';
 // import MovieDetailsPage from 'Pages/MovieDetailsPage';
 import * as movieAPI from 'servises/api';
 
@@ -35,6 +35,7 @@ const MoviesPage = () => {
       if (qwery.length > 0) {
         try {
           const { results } = await movieAPI.getSearchMovies(qwery);
+
           setMoviesSearch([...results]);
         } catch (error) {
           console.log(error);
@@ -63,8 +64,21 @@ const MoviesPage = () => {
           ))}
         </ul>
       )}
+      {/* {moviesSearch.length === 0 && (
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      )} */}
       <hr />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Loader />}>
         <Route path={`${path}/:movieId`}>
           {moviesSearch && <MovieDetailsPage />}
         </Route>

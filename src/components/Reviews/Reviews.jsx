@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import s from './Reviews.module.css';
 const Reviews = ({ results }) => {
   return (
@@ -19,6 +20,9 @@ const Reviews = ({ results }) => {
       </ul>
     </>
   );
+};
+Reviews.propTypes = {
+  results: PropTypes.array,
 };
 
 export default Reviews;

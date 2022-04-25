@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import s from './Cast.module.css';
+import PropTypes from 'prop-types';
 const Cast = ({ cast }) => {
   return (
     <>
@@ -25,6 +26,9 @@ const Cast = ({ cast }) => {
       </ul>
     </>
   );
+};
+Cast.propTypes = {
+  cast: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Cast;

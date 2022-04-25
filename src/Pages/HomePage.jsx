@@ -9,8 +9,8 @@ import {
 import { useState, useEffect, lazy, Suspense } from 'react';
 import * as movieAPI from 'servises/api';
 import { nanoid } from 'nanoid';
+import Loader from 'components/Loader/Loader';
 // import MovieDetailsPage from 'Pages/MovieDetailsPage';
-// import s from './HomePage.module.css'
 
 const MovieDetailsPage = lazy(() =>
   import('Pages/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage" */)
@@ -52,7 +52,7 @@ const HomePage = () => {
         </ul>
       )}
       <hr />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Loader />}>
         <Route path={`${path}/:movieId`}>
           {movies && <MovieDetailsPage movies={movies} />}
         </Route>

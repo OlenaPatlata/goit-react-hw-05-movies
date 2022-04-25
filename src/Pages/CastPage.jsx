@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation, useHistory, NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as movieAPI from 'servises/api';
 
 import Cast from 'components/Cast/Cast';

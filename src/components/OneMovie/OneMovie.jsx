@@ -1,30 +1,10 @@
-import {
-  useParams,
-  useLocation,
-  useHistory,
-  useRouteMatch,
-  NavLink,
-  Route,
-} from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { useRouteMatch, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import s from './OneMovie.module.css';
 import { nanoid } from 'nanoid';
-// import CastPage from 'Pages/CastPage';
-// import ReviewsPage from 'Pages/ReviewsPage';
-
-const CastPage = lazy(() =>
-  import('Pages/CastPage' /* webpackChunkName: "CastPage" */)
-);
-const ReviewsPage = lazy(() =>
-  import('Pages/ReviewsPage' /* webpackChunkName: "ReviewsPage" */)
-);
 
 const OneMovie = ({ movie, onClickBack }) => {
-  const history = useHistory();
-  const params = useParams();
-  const location = useLocation();
-
-  const { url, path } = useRouteMatch();
+  const { url } = useRouteMatch();
   const {
     release_date,
     first_air_date,
@@ -77,7 +57,7 @@ const OneMovie = ({ movie, onClickBack }) => {
         </div>
       </div>
       <hr />
-      <p> Additional information</p>
+      <p className={s.titleMovie}> Additional information</p>
       <nav className={s.nav}>
         <NavLink
           exact
@@ -96,16 +76,11 @@ const OneMovie = ({ movie, onClickBack }) => {
         </NavLink>
       </nav>
       <hr />
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Route path="/movies/:movieId/cast">
-          <CastPage />
-        </Route>
-        <Route path="/movies/:movieId/reviews">
-          <ReviewsPage />
-        </Route>
-      </Suspense>
     </>
   );
 };
-
+OneMovie.propTypes = {
+  movie: PropTypes.object.isRequired,
+  onClickBack: PropTypes.func.isRequired,
+};
 export default OneMovie;

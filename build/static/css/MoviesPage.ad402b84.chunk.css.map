@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/MoviesPage.ad402b84.chunk.css","mappings":"AAAA,mBAGE,wBAAoC,CADpC,WAAY,CADZ,WAGF,CACA,oBACE,WACF","sources":["components/Form/Form.module.css"],"sourcesContent":[".input {\r\n  width: 400px;\r\n  height: 20px;\r\n  border: 1px solid rgb(187, 185, 185);\r\n}\r\n.button {\r\n  height: 23px;\r\n}\r\n"],"names":[],"sourceRoot":""}

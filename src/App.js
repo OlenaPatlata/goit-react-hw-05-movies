@@ -3,6 +3,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 // import Container from 'components/Container/Container';
 import AppBar from 'components/AppBar/AppBar';
+import Loader from 'components/Loader/Loader';
 // import HomePage from 'Pages/HomePage';
 // import MoviesPage from 'Pages/MoviesPage';
 // import MovieDetailsPage from 'Pages/MovieDetailsPage';
@@ -24,12 +25,12 @@ const MoviesPage = lazy(() =>
 const MovieDetailsPage = lazy(() =>
   import('Pages/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage" */)
 );
-const CastPage = lazy(() =>
-  import('Pages/CastPage' /* webpackChunkName: "CastPage" */)
-);
-const ReviewsPage = lazy(() =>
-  import('Pages/ReviewsPage' /* webpackChunkName: "ReviewsPage" */)
-);
+// const CastPage = lazy(() =>
+//   import('Pages/CastPage' /* webpackChunkName: "CastPage" */)
+// );
+// const ReviewsPage = lazy(() =>
+//   import('Pages/ReviewsPage' /* webpackChunkName: "ReviewsPage" */)
+// );
 const NotFoundPage = lazy(() =>
   import('Pages/NotFoundPage' /* webpackChunkName: "NotFoundPage" */)
 );
@@ -39,7 +40,7 @@ export default function App() {
     <>
       {/* <Container> */}
       <AppBar />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Loader />}>
         <Switch>
           <Route exact path="/">
             <HomePage />
@@ -50,12 +51,12 @@ export default function App() {
           <Route path="/movies/:movieId">
             <MovieDetailsPage />
           </Route>
-          <Route path="/movies/:movieId/cast">
+          {/* <Route path="/movies/:movieId/cast">
             <CastPage />
           </Route>
           <Route path="/movies/:movieId/reviews">
             <ReviewsPage />
-          </Route>
+          </Route> */}
           <Route path="/pagenotfound">
             <NotFoundPage />
           </Route>
